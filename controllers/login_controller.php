@@ -13,15 +13,14 @@ class LoginController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $_POST['username'];
-            $this->client->setUserID($_POST['username']);
+            $this->client->setUser($_POST['username']);
             if ($this->client->exists($this->client->userid)) {
                 if ($this->client->verifyPassword($_POST['password']))
                     $this->redirect($this->client->getLink('login', 'updatevisittim'));
-                else
+                elseif (!$this->client->exists($error))
                     $this->redirect($this->client->getLink('login', 'login', array('page_error' => 'pass_not_match')));
-            } else
-                if (!$this->client->exists($error))
-                    $this->redirect($this->client->getLink('login', 'login', array('page_error' => 'user_not_exist')));
+            } elseif (!$this->client->exists($error))
+                $this->redirect($this->client->getLink('login', 'login', array('page_error' => 'user_not_exist')));
         }
         $this->client->setstyle('login');
         $this->client->setPageError($error);

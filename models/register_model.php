@@ -39,15 +39,14 @@ class RegisterModel extends User
 
     public function registerUser()
     {
-        if ($this->addnewUser($_SESSION['username'], $_SESSION['password'], $_SESSION['emailid']) == 0) {
-
-        }
+        $this->setUser($_SESSION['username'], $_SESSION['emailid']);
+        if ($this->addnewUser($_SESSION['password']))
+            $this->userid = $this->getUserID();
+        $this->setAddressLoc($_POST['formaddress'], $_POST['lat'], $_POST['lng']);
+        $this->addnewAddress();
+        //$this->addnewMember();
     }
 
-    public function user_initialise()
-    {
-        $this->setUserID($_SESSION['username']);
-    }
 }
 
 ?>

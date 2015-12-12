@@ -70,9 +70,9 @@ class DB
             $prepstmt->execute();
         } catch (PDOException $ex) {
             //print_r($ex);
-            return -1;
+            return false;
         }
-        return 0;
+        return true;
     }
 }
 

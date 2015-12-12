@@ -9,11 +9,36 @@ abstract class User extends Address
     protected $email;
 
 
-    public function __construct($uname = null)
+    public function __construct()
     {
-        $this->username = $uname;
         $this->con = DB::connect();
-        $this->setUserID($uname);
+    }
+
+
+    /**
+     * @func  public setUser
+     * @description Sets the User variables
+     *      At login, username must be passed
+     *      At registration, username and emailid must be passed
+     *      Else no params
+     *
+     * @param null $uname
+     * @param null $email
+     */
+    public function setUser($uname = NULL, $email = null)
+    {
+        if (isset($email)) {
+            $this->username = $uname;
+            $this->email = $email;
+        } elseif (isset($uname)) {
+            $this->username = $uname;
+            $this->userid = $this->getUserId();
+            $this->email = $this->getEmailID();
+        } else {
+            $this->userid = $_SESSION['userid'];
+            $this->username = $this->getUsername();
+            $this->email = $this->getEmailID();
+        }
     }
 
     public function getUserID($username = null)
@@ -23,13 +48,13 @@ abstract class User extends Address
         return $this->getUserIDfrom('uname', $value);
     }
 
-    public function setUserID($uname = NULL)
-    {
-        if (!isset($this->username))
-            $this->username = $uname;
-        $this->userid = $this->getUserId();
-    }
-
+    /**
+     * @func private getUserIDfrom
+     * @description Returns user ID from database based $value of $index
+     * @param $index Unique Column in User table
+     * @param $value Value to be looked up in table
+     * @return null Returns user ID or null if not exists
+     */
     private function getUserIDfrom($index, $value)
     {
         $stmt = "select uid from user where $index=?";
@@ -41,11 +66,28 @@ abstract class User extends Address
         return $rows[0]['uid'];
     }
 
-    public function getEmailID($email = null)
+    public function getEmailID($uid = null)
     {
-        $email = $this->exists($email) ? $email : $this->$this->email;
-        $value = array($email, PDO::PARAM_STR);
-        return $this->getUserIDfrom('emailid', $value);
+        $uid = isset($uid) ? $uid : $this->userid;
+        $stmt = "SELECT emailid FROM user WHERE uid=?";
+        $params = array(array($uid, PDO::PARAM_INT));
+        $result = array();
+        $rows = DB::select($stmt, $params, $result);
+        if (!count($rows))
+            return NULL;
+        return $rows[0]['emailid'];
+    }
+
+    public function getUsername($uid = null)
+    {
+        $uid = isset($uid) ? $uid : $this->userid;
+        $stmt = "SELECT username FROM user WHERE uid=?";
+        $params = array(array($uid, PDO::PARAM_INT));
+        $result = array();
+        $rows = DB::select($stmt, $params, $result);
+        if (!count($rows))
+            return NULL;
+        return $rows[0]['username'];
     }
 
     public function verify($pass)
@@ -71,10 +113,10 @@ abstract class User extends Address
         DB::callproc($stmt, $params);
     }
 
-    protected function addnewUser($name, $hash, $email)
+    protected function addnewUser($hash)
     {
+        $params = array($this->username, $hash, $this->email);
         $stmt = "insert into hoods.user (uname,password,emailid) values(?,?,?)";
-        $params = array($name, $hash, $email);
         return DB::insert($stmt, $params, array());
     }
 }

@@ -46,13 +46,10 @@ class RegisterController extends Controller
 
     public function validaddr($error = null)
     {
+        $this->client->registerUser();
         foreach ($_POST as $post)
             echo $post . '<br>';
-        foreach ($_SESSION as $key => $item) {
-            echo $key . '=>' . $item . '<br>';
-        }
-        $this->client->user_initialise();
-        $this->client->setAddress($_POST['formaddress']);
+        echo 'userid =>' . $this->client->userid . '<br>';
     }
 
     public function block($error)
