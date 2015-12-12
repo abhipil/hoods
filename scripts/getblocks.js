@@ -2,7 +2,7 @@ function checkclicked(lat, lng) {
     var triangleCoords = [];
     //document.getElementById("blockid").value='lat='+lat.toPrecision(9)+'&lng='+lng.toPrecision(9);
     $.ajax({
-        url: 'http://127.0.0.1/hoods/index.php?c=register&a=getblocks&lat=' + lat.toPrecision(9) + '&lng=' + lng.toPrecision(9),
+        url: 'https://127.0.0.1/hoods/index.php?c=register&a=getblocks&lat=' + lat.toPrecision(9) + '&lng=' + lng.toPrecision(9),
         success: function (data) {
             var obj = JSON.parse(data);
             var arrayLength = obj.length;
