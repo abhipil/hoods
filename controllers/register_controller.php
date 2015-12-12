@@ -30,7 +30,7 @@ class RegisterController extends Controller
                         $this->redirect($this->client->getLink('register', 'register', array('page_error' => 'email_exist')));
             }
             $_SESSION['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $this->client->registerUser();
+            //$this->client->registerUser();
             $this->redirect($this->client->getLink('register', 'address'));
         }
     }
@@ -46,6 +46,11 @@ class RegisterController extends Controller
 
     public function validaddr($error = null)
     {
+        foreach ($_POST as $post)
+            echo $post . '<br>';
+        foreach ($_SESSION as $key => $item) {
+            echo $key . '=>' . $item . '<br>';
+        }
         $this->client->user_initialise();
         $this->client->setAddress($_POST['formaddress']);
     }
