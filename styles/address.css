@@ -198,12 +198,8 @@ a:hover {
     border: 1px solid #c8c8c8;
     color: #777;
     font: 13px Helvetica, Arial, sans-serif;
-    border: 1px solid #c8c8c8;
-    color: #777;
-    font: 13px Helvetica, Arial, sans-serif;
-    margin: auto;
     float: left;
-    margin-left: 10%;
+    margin: auto auto auto 10%;
     padding: 15px 10px 15px 40px;
     width: 60%;
 }

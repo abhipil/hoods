@@ -30,7 +30,6 @@ class RegisterController extends Controller
                         $this->redirect($this->client->getLink('register', 'register', array('page_error' => 'email_exist')));
             }
             $_SESSION['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            //$this->client->registerUser();
             $this->redirect($this->client->getLink('register', 'address'));
         }
     }
@@ -47,9 +46,7 @@ class RegisterController extends Controller
     public function validaddr($error = null)
     {
         $this->client->registerUser();
-        foreach ($_POST as $post)
-            echo $post . '<br>';
-        echo 'userid =>' . $this->client->userid . '<br>';
+        $this->redirect($this->client->getLink('home', 'checkmem'));
     }
 
     public function block($error)
@@ -61,9 +58,10 @@ class RegisterController extends Controller
         $this->client->setPageError($error);
     }
 
-    public function getblocks($params = null)
+    public function jsonblocks($params = null)
     {
-        $this->client->getallblockbounds($params);
+        echo $this->client->jsonAllBlocksin($params);
+        die();
     }
 }
 

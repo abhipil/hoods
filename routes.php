@@ -28,8 +28,9 @@ function call($controller, $action)
             $view = new RegisterView($client);
             break;
         case 'home':
-            //$controller = new RegisterController();
-            //$view = new RegisterView();
+            $client = new HomeModel();
+            $controller = new HomeController($client);
+            $view = new HomeView($client);
             break;
     }
 
@@ -39,8 +40,8 @@ function call($controller, $action)
 
 // we're adding an entry for the new controller and its actions
 $controllers = array('login' => ['login', 'trylogin', 'updatevisittim'],
-    'register' => ['register', 'tryreg', 'address', 'validaddr', 'getblocks', 'block'],
-    'home' => ['home']
+    'register' => ['register', 'tryreg', 'address', 'validaddr', 'jsonblocks', 'block'],
+    'home' => ['checkmem', 'home']
 );
 if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {

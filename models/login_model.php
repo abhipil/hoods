@@ -9,7 +9,7 @@ class LoginModel extends User
 
     function __construct($uname = null)
     {
-        parent::__construct($uname);
+        parent::__construct();
         $this->page_error = "";
         $this->setLoginTemplates();
         $this->scriptspresent = FALSE;

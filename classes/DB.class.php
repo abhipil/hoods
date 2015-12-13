@@ -31,7 +31,7 @@ class DB
         return self::$db;
     }
 
-    public static function select($stmt, $params, $result)
+    public static function select($stmt, $params = null, $result = null)
     {
         $prepstmt = self::$db->prepare($stmt);
         $i = 1;
@@ -57,6 +57,12 @@ class DB
         $prepstmt->execute();
     }
 
+    /**
+     * @param $stmt Prepared statement with the placeholders
+     * @param $params Array of parameters to be inserted,no types required
+     * @param $result
+     * @return bool True if insert successful else false
+     */
     public static function insert($stmt, $params, $result)
     {
 

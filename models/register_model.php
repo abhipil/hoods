@@ -9,7 +9,7 @@ class RegisterModel extends User
 
     function __construct($uname = null)
     {
-        parent::__construct($uname);
+        parent::__construct();
         $this->page_error = "";
         $this->registerTemplates = array('register' => 'register',
             'address' => 'address',
@@ -40,11 +40,13 @@ class RegisterModel extends User
     public function registerUser()
     {
         $this->setUser($_SESSION['username'], $_SESSION['emailid']);
-        if ($this->addnewUser($_SESSION['password']))
-            $this->userid = $this->getUserID();
+        if ($this->addnewUser($_SESSION['password'])) {
+            $_SESSION['userid'] = $this->userid = $this->getUserID();
+        }
         $this->setAddressLoc($_POST['formaddress'], $_POST['lat'], $_POST['lng']);
         $this->addnewAddress();
-        //$this->addnewMember();
+        $this->setBlockVariables($this->userid, $_POST['blockid']);
+        $this->addnewMember();
     }
 
 }

@@ -30,8 +30,9 @@ class LoginController extends Controller
     {
         if (isset($_SESSION['username'])) {
             $this->client->setUserID($_SESSION['username']);
+            $this->client->setUserID($_SESSION['username']);
             $this->client->newvisit();
-            $this->redirect($this->client->getLink('home', 'home'));
+            $this->redirect($this->client->getLink('home', 'checkmem'));
         }
     }
 }

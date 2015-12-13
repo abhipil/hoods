@@ -1,8 +1,7 @@
 <?php
-require_once 'classes/DB.class.php';
-require_once 'classes/Address.class.php';
+require_once 'classes/Block.class.php';
 
-abstract class User extends Address
+abstract class User extends Block
 {
     public $userid;
     protected $username;
@@ -11,7 +10,10 @@ abstract class User extends Address
 
     public function __construct()
     {
-        $this->con = DB::connect();
+        parent::__construct();
+        DB::connect();
+        if (isset($_SESSION['userid']))
+            $this->userid = $_SESSION['userid'];
     }
 
 
