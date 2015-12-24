@@ -16,4 +16,3 @@
         <input id="blockid" type="textbox" name="blockid" hidden>
         <input id="submit" type="submit" name="submit" value="Submit">
     </form>
-</div>

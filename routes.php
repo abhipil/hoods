@@ -32,6 +32,11 @@ function call($controller, $action)
             $controller = new HomeController($client);
             $view = new HomeView($client);
             break;
+        case 'profile':
+            $client = new ProfileModel();
+            $controller = new ProfileController($client);
+            $view = new ProfileView($client);
+            break;
     }
 
     $controller->{$action}($params);
@@ -41,7 +46,9 @@ function call($controller, $action)
 // we're adding an entry for the new controller and its actions
 $controllers = array('login' => ['login', 'trylogin', 'updatevisittim'],
     'register' => ['register', 'tryreg', 'address', 'validaddr', 'jsonblocks', 'block'],
-    'home' => ['checkmem', 'home']
+    'home' => ['post', 'profile', 'home'],
+    'profile' => ['page'],
+    'block' => ['block']
 );
 if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {

@@ -46,7 +46,7 @@ class RegisterController extends Controller
     public function validaddr($error = null)
     {
         $this->client->registerUser();
-        $this->redirect($this->client->getLink('home', 'checkmem'));
+        $this->redirect($this->client->getLink('home', 'home'));
     }
 
     public function block($error)

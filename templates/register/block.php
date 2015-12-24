@@ -7,4 +7,3 @@
             <input id="submit" type="submit" value="Submit">
         </form>
     </section><!-- content -->
-</div><!-- container -->

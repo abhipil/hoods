@@ -29,10 +29,9 @@ class LoginController extends Controller
     public function updatevisittim()
     {
         if (isset($_SESSION['username'])) {
-            $this->client->setUserID($_SESSION['username']);
-            $this->client->setUserID($_SESSION['username']);
+            $this->client->setUser($_SESSION['username']);
             $this->client->newvisit();
-            $this->redirect($this->client->getLink('home', 'checkmem'));
+            $this->redirect($this->client->getLink('home', 'home'));
         }
     }
 }

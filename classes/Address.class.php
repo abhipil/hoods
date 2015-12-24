@@ -1,12 +1,11 @@
 <?php
-require_once('classes/DB.class.php');
-require_once('classes/Model.class.php');
+require_once('classes/Profile.class.php');
 
 
 /**
  *
  */
-abstract class Address extends Model
+abstract class Address extends Profile
 {
     protected $aptnum;
     protected $buldnum;

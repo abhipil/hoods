@@ -6,7 +6,6 @@ abstract class Model
     protected $templates = array(
         'top' => 'templates/html_begin.php',
         'head' => 'templates/head.php',
-        'body' => 'templates/body.php',
         'footer' => 'templates/footer.php',
         'bottom' => 'templates/html_end.php'
     );
@@ -29,7 +28,7 @@ abstract class Model
         $link = 'index.php?c=' . $controller . '&a=' . $action;
         if (isset($params) || !empty($params))
             foreach ($params as $key => $param)
-                return $link . '&' . $key . '=' . $param;
+                $link .= '&' . $key . '=' . $param;
         return $link;
     }
 
@@ -79,8 +78,14 @@ abstract class Model
     public function getTemplate($template)
     {
         return $this->templates[$template];
+
     }
 
+    public function getTemplates()
+    {
+        return $this->templates;
+
+    }
     public function getPageError()
     {
         return $this->page_error;

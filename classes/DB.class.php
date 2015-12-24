@@ -35,6 +35,7 @@ class DB
     {
         $prepstmt = self::$db->prepare($stmt);
         $i = 1;
+        if (isset($params))
         foreach ($params as $param) {
             $prepstmt->bindParam($i, $param[0], $param[1]);
             $i++;

@@ -18,4 +18,26 @@ abstract class Thread extends User
         parent::__construct();
     }
 
+    public function getThreads($target, $targetid)
+    {
+        $stmt = "SELECT tid, title, uname FROM (thread NATURAL JOIN message) NATURAL JOIN user
+                 WHERE count=0 ";
+        switch ($target) {
+            case 'hood':
+                $stmt .= "and target='hood' and targetid=$targetid";
+                $rows = DB::select($stmt, array());
+                //print_r($rows);
+                //die();
+                break;
+            case 'block':
+                $stmt .= "and target='block' and targetid=$targetid";
+                $rows = DB::select($stmt, array());
+
+                break;
+            default:
+
+        }
+        return $rows;
+    }
+
 }

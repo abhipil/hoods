@@ -1,6 +1,6 @@
 var map;
 var bermudaTriangle;
-var flag = true;
+//var flag = true;
 function setbounds(arg) {
     triangleCoords = arg;
     bermudaTriangle = new google.maps.Polygon({
@@ -66,7 +66,7 @@ function initMap() {
                 document.getElementById('lat').value = myLatLng.lat;
                 document.getElementById('lng').value = myLatLng.lng;
                 checkclicked(myLatLng.lat, myLatLng.lng);
-                flag = false;
+                //flag = false;
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }

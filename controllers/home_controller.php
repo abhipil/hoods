@@ -8,21 +8,30 @@ class HomeController extends Controller
         $this->client = $client;
     }
 
-    public function checkmem($params = null)
+    public function home($params = null)
     {
-        // if not redirect to no member status
-        // Session not updates please check
-        if (strcmp($this->client->isMember(), 'joined')) {
-            $this->redirect($this->client->getLink('home', 'home'));
+        //       echo
+        if (!$this->client->isMember()) {
+            $this->client->notaMember = true;
+        }
+        $this->client->setHomeTemplates(array('nonmember', 'home'));
+        $this->client->setHomeScripts(array('dialog'));
+        $this->client->setstyle('home');
+        $this->client->setPageError($params);
+    }
+
+    public function post()
+    {
+        echo "hello";
+        die();
+        if (!$this->client->isMember()) {
+            $this->client->redirect($this->client->getLink('home', 'hom'));
         }
     }
 
-    public function home($params = null)
+    public function profile()
     {
-        //$this->client->setMap(true);
-        //$this->client->setHomeScripts(array('map', 'getblocks'));
-        $this->client->setstyle('home');
-        $this->client->setPageError($params);
+
     }
 }
 

@@ -1,19 +1,21 @@
 <?php
 require_once 'classes/Block.class.php';
+require_once 'classes/DB.class.php';
 
 abstract class User extends Block
 {
     public $userid;
-    protected $username;
-    protected $email;
+    public $username;
+    public $email;
 
 
     public function __construct()
     {
         parent::__construct();
         DB::connect();
-        if (isset($_SESSION['userid']))
-            $this->userid = $_SESSION['userid'];
+        if (isset($_SESSION['userid'])) {
+            $this->setUser();
+        }
     }
 
 
@@ -35,6 +37,7 @@ abstract class User extends Block
         } elseif (isset($uname)) {
             $this->username = $uname;
             $this->userid = $this->getUserId();
+            $_SESSION['userid'] = $this->userid;
             $this->email = $this->getEmailID();
         } else {
             $this->userid = $_SESSION['userid'];
@@ -83,13 +86,13 @@ abstract class User extends Block
     public function getUsername($uid = null)
     {
         $uid = isset($uid) ? $uid : $this->userid;
-        $stmt = "SELECT username FROM user WHERE uid=?";
+        $stmt = "SELECT uname FROM user WHERE uid=?";
         $params = array(array($uid, PDO::PARAM_INT));
         $result = array();
         $rows = DB::select($stmt, $params, $result);
         if (!count($rows))
             return NULL;
-        return $rows[0]['username'];
+        return $rows[0]['uname'];
     }
 
     public function verify($pass)

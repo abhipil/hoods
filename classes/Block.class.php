@@ -28,10 +28,11 @@ abstract class Block extends Address
         $rows = DB::select($stmt, array());
         if (!$this->exists($rows))
             $rows = NULL;
-        if ($rows[0]['status'] === 2)
+        if (strcmp($rows[0]['status'], 'joined') == 0)
             return true;
-        else
+        elseif (strcmp($rows[0]['status'], 'requested') == 0)
             return false;
+
     }
 
     public function setBlockVariables($uid = null, $bid = null)
@@ -41,10 +42,10 @@ abstract class Block extends Address
             $_SESSION['blockid'] = $bid;
         } else
             $this->blockid = $this->getBlockID();
-        $this->hoodid = $this->getHoodID($this->blockid);
+        $this->hoodid = $this->getHoodID();
     }
 
-    public function getBlockID($userid)
+    public function getBlockID($userid = null)
     {
         $stmt = "select bid from member WHERE uid=$userid AND status='requested'";
         $rows = DB::select($stmt);
@@ -54,13 +55,35 @@ abstract class Block extends Address
         return $rows[0]['bid'];
     }
 
-    public function getHoodID($bid)
+    public function getHoodID($bid = null)
     {
+        $bid = isset($bid) ? $bid : $this->blockid;
         $stmt = "select hid from block WHERE bid=$bid";
         $rows = DB::select($stmt);
         if (!$this->exists($rows))
             $rows = NULL;
         return $rows[0]['hid'];
+    }
+
+    public function getActiveRequests()
+    {
+        $stmt = "SELECT count(reqid) as cnt FROM hoods.mem_req join member on member.memid=mem_req.memid
+                where member.bid=$this->blockid and member.status='requested';";
+        $rows = DB::select($stmt);
+        if (!$this->exists($rows))
+            $rows = NULL;
+        //if()
+        return $rows[0]['cnt'];
+    }
+
+    public function getBlockName($blockid = null)
+    {
+        $blockid = isset($blockid) ? $blockid : $this->blockid;
+        $stmt = "select bname from block WHERE bid=$blockid";
+        $rows = DB::select($stmt);
+        if (!$this->exists($rows))
+            $rows = NULL;
+        return $rows[0]['bname'];
     }
 
     public function jsonAllBlocksin($loc)
@@ -164,6 +187,14 @@ abstract class Block extends Address
         else
             return false;
         return DB::insert($stmt, $params, array());
+    }
+
+    public function getRequests()
+    {
+        $stmt = "select approvals, uname, bid, reqid from mem_req JOIN member on mem_req.memid = member.memid
+                NATURAL JOIN user WHERE approvals>0 and bid=$this->blockid";
+        $rows = DB::select($stmt, array(), array());
+        return $rows;
     }
 }
 

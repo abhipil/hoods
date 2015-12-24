@@ -1,3 +1,11 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: abhishek
+ * Date: 12/24/15
+ * Time: 1:37 AM
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -321,13 +329,12 @@
                         ?>
                     ">Post</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-top-links navbar-right">
                     <li class="dropdown">
-                        <a data-toggle="dropdown" role="button" class="dropdown-toggle" href="#" aria-haspopup="true"
-                           aria-expanded="false">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <?php echo $this->client->username; ?>
                             <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <ul role="menu" class="dropdown-menu">
                             <li><a href="#">Signout</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Signout</a></li>
@@ -390,98 +397,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="text-center">
-                    Welcome to your hood!!
+                    Welcome, <?php echo $this->client->firstname; ?>
                 </h1>
+                <img src="images/anon1.jpg" alt="Anon Pic" style="width:304px;height:228px;">
             </div>
+
         </div>
 
         <div class="row">
-            <div class="sidebar sidebar-right">
-                <div class="list-group">
-                    <?php
-                    echo "<a ";
-                    if (!$this->client->notaMember)
-                        echo "href=" . $this->client->getLink('block', 'block', array());
-                    else
-                        echo "href=''";
-                    echo " class='list-group-item active'>";
-                    ?>
-                    <span class="glyphicon glyphicon-exclamation-sign"></span>
-                    Member Requests
-                                        <span class="badge">
-                                            <?php echo $this->client->getActiveRequests(); ?>
-                                        </span>
-                    </a>
-                    <?php
-                    $i = 0;
-                    foreach ($this->client->getRequests() as $requests) {
-                        echo "<a ";
-                        if (!$this->client->notaMember)
-                            echo "href=" . $this->client->getLink('block', 'block', array('bid' => $requests['bid'],
-                                    'reqid' => $requests['reqid']));
-                        else
-                            echo "href=''";
-                        echo " class='list-group-item'>";
-                        echo $requests['uname']
-                            . "<span class='badge'>"
-                            . $requests['approvals']
-                            . "</span>"
-                            . "</a>";
-                        $i++;
-                        if ($i > 3)
-                            break;
-                    }
-                    if ($i == 0) {
-                        echo "<a href='#' class='list-group-item'>";
-                        echo "No Active Requests";
-                        echo "</a>";
-                    }
 
-                    ?>
-                </div>
-            </div>
-            <div class='col-md-10'>
-                <?php
-                if ($this->client->notaMember)
-                    require_once('templates/home/pend-mem-modal.php')
-                ?>
-                <div class="table-responsive" style="font-size:24px">
-                    <table class="table .table-condensed table-hover ">
-                        <tbody>
-                        <?php
-                        $target = 'hood';
-                        $targetid = $this->client->getHoodID();
-                        if (!$this->client->notaMember)
-                            if (isset($_GET['t'])) {
-                                $target = $_GET['t'];
-                                if (isset($_GET['tid']))
-                                    $targetid = $_GET['tid'];
-                            }
-                        $rows = $this->client->getThreads($target, $targetid);
-                        foreach ($rows as $thread) {
-                            echo "<tr >"
-                                . "<td>"
-                                . "<a href="
-                                . $this->client->getLink('home', 'post', array('tr' => $thread['tid']))
-                                . ">"
-                                . $thread['title']
-                                . "</a>"
-                                . "</td>"
-                                . "<td>by "
-                                . "<a href="
-                                . $this->client->getLink('profile', 'page', array('u' => $thread['uname']))
-                                . ">"
-                                . $thread['uname']
-                                . "</a>"
-                                . "</td>"
-                                . "</tr >";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
+        <!-- /#row -->
     </div>
     <!-- /#page-content-wrapper -->
 
