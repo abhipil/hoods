@@ -399,7 +399,9 @@
                 <h1 class="text-center">
                     Welcome, <?php echo $this->client->firstname; ?>
                 </h1>
-                <img src="images/anon1.jpg" alt="Anon Pic" style="width:304px;height:228px;">
+                <div class="span12">
+                    <img class="img-responsive center-block" src="images/anon1.jpg" alt="Anon Pic" style="width:600px;height:400px;">
+                </div>
             </div>
 
         </div>
