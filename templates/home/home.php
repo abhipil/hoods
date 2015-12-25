@@ -307,18 +307,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Hoods</a>
+                <a href="<?php
+                echo $this->client->getLink('home', 'home');
+                ?>" class="navbar-brand">Hoods</a>
             </div>
             <!-- Collection of nav links and other content for toggling -->
             <div id="navbarCollapse" class="collapse navbar-collapse fixed">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li class="active"><a href="<?php
+                        echo $this->client->getLink('home', 'home');
+                        ?>">Home</a></li>
+                    <li><a href="
+                    <?php
+                        echo $this->client->getLink('profile', 'page');
+                    ?>">Profile</a></li>
                     <li><a href="#">Block</a></li>
                     <li><a href="
                     <?php
                         echo $this->client->getLink('home', 'post');
-                        ?>
+                    ?>
                     ">Post</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -349,7 +356,13 @@
                 </a>
             </li>
             <li>
-                <a href="#">Direct Messages</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'dm',
+                        'tid' => $this->client->userid));
+                else
+                    echo '';
+                ?>">Direct Messages</a>
             </li>
             <li>
                 <a href="
@@ -362,13 +375,28 @@
                 ?>">Block</a>
             </li>
             <li>
-                <a href="#">Friends</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'friends'));
+                else
+                    echo '';
+                ?>">Friends</a>
             </li>
             <li>
-                <a href="#">Neighbours</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Neighbours</a>
             </li>
             <li>
-                <a href="#">Post</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Post</a>
             </li>
             <li>
                 <a href="#">Services</a>
@@ -413,29 +441,29 @@
                                         </span>
                     </a>
                     <?php
-                    $i = 0;
-                    foreach ($this->client->getRequests() as $requests) {
-                        echo "<a ";
-                        if (!$this->client->notaMember)
-                            echo "href=" . $this->client->getLink('block', 'block', array('bid' => $requests['bid'],
-                                    'reqid' => $requests['reqid']));
-                        else
-                            echo "href=''";
-                        echo " class='list-group-item'>";
-                        echo $requests['uname']
-                            . "<span class='badge'>"
-                            . $requests['approvals']
-                            . "</span>"
-                            . "</a>";
-                        $i++;
-                        if ($i > 3)
-                            break;
-                    }
-                    if ($i == 0) {
-                        echo "<a href='#' class='list-group-item'>";
-                        echo "No Active Requests";
-                        echo "</a>";
-                    }
+                        $i = 0;
+                        foreach ($this->client->getRequests() as $requests) {
+                            echo "<a ";
+                            if (!$this->client->notaMember)
+                                echo "href=" . $this->client->getLink('block', 'block', array('bid' => $requests['bid'],
+                                        'reqid' => $requests['reqid']));
+                            else
+                                echo "href=''";
+                            echo " class='list-group-item'>";
+                            echo $requests['uname']
+                                . "<span class='badge'>"
+                                . $requests['approvals']
+                                . "</span>"
+                                . "</a>";
+                            $i++;
+                            if ($i > 3)
+                                break;
+                        }
+                        if ($i == 0) {
+                            echo "<a href='#' class='list-group-item'>";
+                            echo "No Active Requests";
+                            echo "</a>";
+                        }
 
                     ?>
                 </div>
@@ -456,6 +484,8 @@
                                 $target = $_GET['t'];
                                 if (isset($_GET['tid']))
                                     $targetid = $_GET['tid'];
+                                else
+                                    $targetid=null;
                             }
                         $rows = $this->client->getThreads($target, $targetid);
                         foreach ($rows as $thread) {
@@ -469,7 +499,7 @@
                                 . "</td>"
                                 . "<td>by "
                                 . "<a href="
-                                . $this->client->getLink('profile', 'page', array('u' => $thread['uname']))
+                                . $this->client->getLink('profile', 'user', array('u' => $thread['uname']))
                                 . ">"
                                 . $thread['uname']
                                 . "</a>"

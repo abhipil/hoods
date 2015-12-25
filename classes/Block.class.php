@@ -9,6 +9,7 @@ abstract class Block extends Address
     public $blockid;
     public $hoodid;
     public $memberid;
+    public $notaMember;
 
     public function __construct()
     {
@@ -22,9 +23,16 @@ abstract class Block extends Address
      * @description Initialises block variables
      *      At registration, $bid, $uid must be passed
      */
-    public function isMember()
+    public function isMember($userid=null)
     {
-        $stmt = "select status from member WHERE uid=$this->userid AND bid=$this->blockid";
+        if($userid){
+            $blockid=$this->getBlockID($userid);
+        }
+        else{
+            $userid=$this->userid;
+            $blockid=$this->blockid;
+        }
+        $stmt = "select status from member WHERE uid=$userid AND bid=$blockid";
         $rows = DB::select($stmt, array());
         if (!$this->exists($rows))
             $rows = NULL;
@@ -47,7 +55,7 @@ abstract class Block extends Address
 
     public function getBlockID($userid = null)
     {
-        $stmt = "select bid from member WHERE uid=$userid AND status='requested'";
+        $stmt = "select bid from member WHERE uid=$userid";// AND status='requested'
         $rows = DB::select($stmt);
         if (!$this->exists($rows))
             $rows = NULL;
@@ -117,9 +125,11 @@ abstract class Block extends Address
         return $blocks;
     }
 
-    public function getAllBlockBounds()
-    {
-        $stmt = 'SELECT bid,lat,lng FROM hoods.blockbounds ORDER BY bid,next ASC;';
+    public function getAllBlockBounds($bid=null){
+        if(isset($bid))
+            $stmt = 'SELECT bid,lat,lng FROM hoods.blockbounds where bid='. $bid .' ORDER BY bid,next ASC;';
+        else
+            $stmt = 'SELECT bid,lat,lng FROM hoods.blockbounds ORDER BY bid,next ASC;';
         $rows = DB::select($stmt, $params = array(), $result = array());
         if (!$this->exists($rows))
             $rows = NULL;
@@ -189,13 +199,22 @@ abstract class Block extends Address
         return DB::insert($stmt, $params, array());
     }
 
-    public function getRequests()
-    {
-        $stmt = "select approvals, uname, bid, reqid from mem_req JOIN member on mem_req.memid = member.memid
+    public function getRequests($full=null){
+        if($full)
+            $stmt = "SELECT reqid,approve1,approve2,approve3,approvals,uname
+                    FROM (hoods.mem_req join member on member.memid=mem_req.memid) join user on user.uid=member.uid
+                    where approvals>0
+                    and bid=$this->blockid;";
+        else
+            $stmt = "select approvals, uname, bid, reqid from mem_req JOIN member on mem_req.memid = member.memid
                 NATURAL JOIN user WHERE approvals>0 and bid=$this->blockid";
         $rows = DB::select($stmt, array(), array());
         return $rows;
     }
-}
 
+    public function approveRequests($reqid, $pos){
+        $stmt = "UPDATE `hoods`.`mem_req` SET `approve".$pos."`=$this->userid WHERE `reqid`=$reqid;";
+        return DB::insert($stmt,array(),array());
+    }
+}
 ?>

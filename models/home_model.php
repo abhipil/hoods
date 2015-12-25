@@ -3,13 +3,14 @@ require_once("classes/Thread.class.php");
 
 class HomeModel extends Thread
 {
-    public $notaMember;
     private $homeTemplates;
     private $homeScripts = array('map' => 'map');
+    public $home;
 
     function __construct()
     {
         parent::__construct();
+        $this->home='home';
         $this->page_error = "";
         $this->homeTemplates = array('home' => ['home', 'nonmember']);
         $this->homeScripts = array();

@@ -12,7 +12,7 @@ class HomeView extends View
 
     public function home()
     {
-        require_once("templates/home/home.php");
+        require_once("templates/home/".$this->client->home.".php");
     }
 }
 ?>

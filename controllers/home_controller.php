@@ -10,23 +10,26 @@ class HomeController extends Controller
 
     public function home($params = null)
     {
-        //       echo
         if (!$this->client->isMember()) {
             $this->client->notaMember = true;
         }
         $this->client->setHomeTemplates(array('nonmember', 'home'));
         $this->client->setHomeScripts(array('dialog'));
         $this->client->setstyle('home');
-        $this->client->setPageError($params);
+        if(isset($params['page_error']))
+        $this->client->setPageError($params['page_error']);
     }
 
     public function post()
     {
-        echo "hello";
-        die();
         if (!$this->client->isMember()) {
-            $this->client->redirect($this->client->getLink('home', 'hom'));
+            $this->client->redirect($this->client->getLink('home', 'home'));
         }
+        $this->client->home='post';
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $this->client->createthread($_POST);
+        }
+
     }
 
     public function profile()

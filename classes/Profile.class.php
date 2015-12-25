@@ -9,8 +9,7 @@
 
 require_once('classes/Model.class.php');
 
-class Profile extends Model
-{
+class Profile extends Model{
     public $firstname;
     public $lastname;
     public $descrip;
@@ -24,7 +23,13 @@ class Profile extends Model
             $this->lastname = $name['lname'];
         }
     }
-
+    public function setProfile(){
+        if ($this->exists($_SESSION['userid'])) {
+            $name = $this->getProfile($_SESSION['userid']);
+            $this->descrip = $name['pdesc'];
+            $this->imagepath = $name['pic'];
+        }
+    }
     public function getName($userid = null)
     {
         $userid = $this->exists($userid) ? $userid : $this->$userid;
@@ -35,4 +40,14 @@ class Profile extends Model
         else
             return array('fname' => '', 'lname' => '');
     }
+    public function getProfile($userid = null){
+        $userid = $this->exists($userid) ? $userid : $this->$userid;
+        $stmt = "select pdesc,pic from profile where uid=$userid";
+        $rows = DB::select($stmt, array());
+        if ($this->exists($rows[0]))
+            return $rows[0];
+        else
+            return array('pdesc' => '', 'pic' => '');
+    }
+
 }

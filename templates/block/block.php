@@ -3,9 +3,10 @@
  * Created by PhpStorm.
  * User: abhishek
  * Date: 12/24/15
- * Time: 1:37 AM
+ * Time: 11:44 PM
  */
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -273,64 +274,17 @@
             -webkit-transform: translate3d(-100px, 0, 0);
             -webkit-transition: all .35s ease-in-out;
         }
-
-        #floating-panel input[type="textbox"] {
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            -ms-border-radius: 3px;
-            -o-border-radius: 3px;
-            border-radius: 3px;
-            -webkit-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -moz-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -ms-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            background: #eae7e7 url(../icons/map.png) no-repeat;
-            border: 1px solid #c8c8c8;
-            color: #777;
-            font: 13px Helvetica, Arial, sans-serif;
-            float: left;
-            margin: auto 10px 10px 0;
-            padding: 15px 10px 15px 40px;
-            width: 60%;
-        }
-
-        #floating-panel input[type="textbox"]:focus {
-            -webkit-box-shadow: 0 0 2px #ed1c24 inset;
-            -moz-box-shadow: 0 0 2px #ed1c24 inset;
-            -ms-box-shadow: 0 0 2px #ed1c24 inset;
-            -o-box-shadow: 0 0 2px #ed1c24 inset;
-            box-shadow: 0 0 2px #ed1c24 inset;
-            background-color: #fff;
-            border: 1px solid #ed1c24;
-            outline: none;
-        }
-
-        .sidebar-right {
-            height: 100px;
-            right: 0;
-            float: right;
-        }
-
-        /*-- List groups --*/
-        .list-group {
-            width: 200px;
-        }
-
-        .bs-example {
-            margin: 20px;
-        }
         #map {
             position: relative;
             height: 500px;
             width: 50%;
         }
-
+        .list-group-horizontal .list-group-item {
+            display: inline-block;
+        }
+        .list-group-horizontal .list-group-item {
+            margin 0 auto:
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -340,8 +294,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <script type="text/javascript" src="scripts/map.js"></script>
+    <script type="text/javascript" src="scripts/map1.js"></script>
     <script type="text/javascript" src="scripts/getblocks.js"></script>
     <?php
     if ($this->client->showMap()) {
@@ -351,10 +304,7 @@
     }
     ?>
     <script type="text/javascript">
-        myLatLng = {
-            lat: <?php echo $this->client->lat;?>,
-            lng: <?php echo $this->client->lng;?>};
-        clickableMap=false;
+
     </script>
 
 </head>
@@ -386,7 +336,7 @@
                     <li><a href="
                     <?php
                         echo $this->client->getLink('profile', 'page');
-                    ?>">Profile</a></li>
+                        ?>">Profile</a></li>
                     <li><a href="#">Block</a></li>
                     <li><a href="
                     <?php
@@ -394,12 +344,19 @@
                         ?>
                     ">Post</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-top-links navbar-right">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <a data-toggle="dropdown" role="button" class="dropdown-toggle" href="#" aria-haspopup="true"
+                           aria-expanded="false">
                             <?php echo $this->client->username; ?>
                             <b class="caret"></b></a>
-                        <ul role="menu" class="dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li><a href="#">Signout</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Signout</a></li>
@@ -421,7 +378,13 @@
                 </a>
             </li>
             <li>
-                <a href="#">Direct Messages</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'dm',
+                        'tid' => $this->client->userid));
+                else
+                    echo '';
+                ?>">Direct Messages</a>
             </li>
             <li>
                 <a href="
@@ -434,13 +397,28 @@
                 ?>">Block</a>
             </li>
             <li>
-                <a href="#">Friends</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'friends'));
+                else
+                    echo '';
+                ?>">Friends</a>
             </li>
             <li>
-                <a href="#">Neighbours</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Neighbours</a>
             </li>
             <li>
-                <a href="#">Post</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Post</a>
             </li>
             <li>
                 <a href="#">Services</a>
@@ -462,45 +440,89 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="text-center">
-                    Welcome, <?php echo $this->client->firstname; ?>
+                    Checkout the block
                 </h1>
-                <div class="span12">
-                    <input class="img-responsive center-block" type="image" src="images/anon1.jpg" alt="Anon Pic" style="width:400px;height:400px;">
-                    <input type="file" id="my_file" accept="image/*" style="display: none;" />
-                </div>
             </div>
         </div>
+        <div class="row">
+            <h2 class="col-lg-12">
+                <h2 class="text-center">
+                    <?php
+                        echo htmlspecialchars(trim($this->client->getBlockName()));
+                    ?>
+                </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-lg-offset-3">
+                <div id="map"></div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-3">
 
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="form-group">
-                    <label for="comment" style="font-size:24px">Description</label>
-                    <textarea class="form-control" rows="5" style="font-size:18px id="comment">
-                        <?php
-                            echo htmlspecialchars(trim($this->client->descrip));
-                        ?>
-                    </textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="form-group">
-                    <label for="comment" style="font-size:24px">Address</label>
-                    <div id="floating-panel">
-                        <input id="address" type="textbox" placeholder="Enter your address">
+                <p class="text-center" style="font-size: 24px;">Membership Requests</p>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 text-center">
+                        <div class="list-group list-group-horizontal">
+                            <p class="list-group-item active pull-left" > Requestor</p>
+                            <p class="list-group-item active" > Approvals</p>
+                        </div>
                     </div>
                 </div>
+                <?php
+                    $i = 0;
+                    foreach ($this->client->getRequests(true) as $requests) {
+                        echo "<div class=\"row\">"
+                            ."<div class=\"col-xs-12 col-sm-12 col-md-8 col-lg-9 text-center\">"
+                            ."<div class=\"list-group list-group-horizontal\">";
+                        echo "<p "
+                            ." class='list-group-item pull-left'>"
+                            ."<a href='"
+                            . $this->client->getLink('profile', 'user', array('u' => $requests['uname']))
+                            ."'>"
+                            .$requests['uname']
+                            ."</a>"
+                            ."</p>";
+                        $j=0;
+                        $params=array('r' =>$requests['reqid'],'p' =>4-$requests['approvals']);
+//                        print_r($requests); die();
+                        while($j<3) {
+                            if(isset($requests['approve'.($j+1)])) {
+                                echo "<p "
+                                    . " class='list-group-item '>"
+                                    . "<a href='"
+                                    . $this->client->getLink('profile', 'user', array('u' => $this->client->getUsername($requests['approve' . ($j + 1)])))
+                                    . "'>"
+                                    . $this->client->getUsername($requests['approve' . ($j + 1)])
+                                    . "</a>"
+                                    . "</p>";
+                                $params['a'.($j+1)]=$requests['approve'.($j+1)];
+                            }
+                            $j+=1;
+                        }
+                        $i++;
+                        echo "<a href='"
+                            .$this->client->getLink('block', 'approve', $params)
+                            . "' class=\"list-group-item btn btn-info btn-sm btn-block\"><span class=\"glyphicon glyphicon-ok\"></span>"
+                            . 'Approve'
+                            . "</a>";
+                        echo "</div>"
+                            ."</div>"
+                            ."</div>";
+                    }
+                    if ($i == 0) {
+                        echo "<a href='#' class='list-group-item'>";
+                        echo "No Active Requests";
+                        echo "</a>";
+                    }
+                ?>
             </div>
-            <div id="map" class="col-lg-6 col-lg-offset-3"></div>
         </div>
-
-        <!-- /#row -->
+        <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#page-content-wrapper -->
-
+    <!-- /#wrapper -->
 </div>
-<!-- /#wrapper -->
 
 <!-- jQuery -->
 <script src="scripts/jquery.js"></script>
@@ -510,24 +532,22 @@
 <script src="scripts/dialog.js" type="text/javascript"></script>
 <script src="scripts/hamburger-cross.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $("input[type='image']").click(function() {
-        $("input[id='my_file']").click();
-    });
-    document.getElementById('address').value="<?php echo $this->client->address;?>";
 
-    var myFormData = new FormData();
-    var pictureInput = document.getElementById('my_file');
-    myFormData.append('my_file', pictureInput.files[0]);
-
-    $.ajax({
-        url: '<?php echo $this->client->getLink('profile','uploadPic');?>',
-        type: 'POST',
-        processData: false, // important
-        contentType: false, // important
-        dataType : 'json',
-        data: myFormData
-    });
-
+    window.onload = function() {
+            <?php
+                $rows = $this->client->getAllBlockBounds($this->client->blockid);
+            ?>
+            var triangleCoords = [];
+            <?php $i=0;
+                foreach($rows as $row){
+                    echo "triangleCoords.push({"
+                        ."lat: parseFloat(".$row['lat']."),"
+                        ."lng: parseFloat(".$row['lng'].")});\n";
+                }
+            ?>
+            console.log(triangleCoords);
+            setbounds(triangleCoords);
+    };
 </script>
 </body>
 

@@ -10,12 +10,16 @@ function call($controller, $action)
     //$view=null;
     //$var = ucfirst($controller.'Model');
     //$client = eval("new $var()");
-    if (isset($_GET['page_error']))
-        $params = $_GET['page_error'];
-    else {
+//    if (isset($_GET['page_error']))
+//        $params = $_GET['page_error'];
+//    else {
         if (isset($_GET['lat']))
             $params = array($_GET['lat'], $_GET['lng']);
-    }
+        else {
+            if (isset($_GET))
+                $params = $_GET;
+        }
+//    }
     switch ($controller) {
         case 'login':
             $client = new LoginModel();
@@ -37,6 +41,11 @@ function call($controller, $action)
             $controller = new ProfileController($client);
             $view = new ProfileView($client);
             break;
+        case 'block':
+            $client = new BlockModel();
+            $controller = new BlockController($client);
+            $view = new BlockView($client);
+            break;
     }
 
     $controller->{$action}($params);
@@ -47,8 +56,9 @@ function call($controller, $action)
 $controllers = array('login' => ['login', 'trylogin', 'updatevisittim'],
     'register' => ['register', 'tryreg', 'address', 'validaddr', 'jsonblocks', 'block'],
     'home' => ['post', 'profile', 'home'],
-    'profile' => ['page'],
-    'block' => ['block']
+    'profile' => ['page','uploadPic','user','friends'],
+    'post' => ['post'],
+    'block' => ['block','approve']
 );
 if (array_key_exists($controller, $controllers)) {
     if (in_array($action, $controllers[$controller])) {

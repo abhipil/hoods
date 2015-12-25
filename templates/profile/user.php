@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: abhishek
  * Date: 12/24/15
- * Time: 1:37 AM
+ * Time: 8:22 AM
  */
 ?>
 <!DOCTYPE html>
@@ -350,12 +350,6 @@
         echo '</script>';
     }
     ?>
-    <script type="text/javascript">
-        myLatLng = {
-            lat: <?php echo $this->client->lat;?>,
-            lng: <?php echo $this->client->lng;?>};
-        clickableMap=false;
-    </script>
 
 </head>
 
@@ -373,9 +367,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="<?php
-                echo $this->client->getLink('home', 'home');
-                ?>" class="navbar-brand">Hoods</a>
+                <a href="#" class="navbar-brand">Hoods</a>
             </div>
             <!-- Collection of nav links and other content for toggling -->
             <div id="navbarCollapse" class="collapse navbar-collapse fixed">
@@ -386,7 +378,7 @@
                     <li><a href="
                     <?php
                         echo $this->client->getLink('profile', 'page');
-                    ?>">Profile</a></li>
+                        ?>">Profile</a></li>
                     <li><a href="#">Block</a></li>
                     <li><a href="
                     <?php
@@ -462,7 +454,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="text-center">
-                    Welcome, <?php echo $this->client->firstname; ?>
+                    Hi, I'm <?php $row=$this->client->getName($this->client->user['uid']);
+                                    echo $row['fname']." ".$row['lname']; ?>
                 </h1>
                 <div class="span12">
                     <input class="img-responsive center-block" type="image" src="images/anon1.jpg" alt="Anon Pic" style="width:400px;height:400px;">
@@ -470,31 +463,33 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-3 col-lg-offset-3 ">
+                <button id="friend" type="button" onclick="reqfre()" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Request Friendship
+                </button>
+            </div>
+            <div class="col-lg-3 col-lg-offset-1 ">
+                <button id="neighbour" type="button" onclick="neigh()" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-home"></span>
+                    Be my Neighbour
+                </button>
+            </div>
+        </div>
+        <br>
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="form-group">
                     <label for="comment" style="font-size:24px">Description</label>
-                    <textarea class="form-control" rows="5" style="font-size:18px id="comment">
-                        <?php
-                            echo htmlspecialchars(trim($this->client->descrip));
-                        ?>
+                    <textarea readonly class="form-control" rows="5" style="font-size:18px id="comment">
+                    <?php
+                    echo htmlspecialchars(trim($this->client->getProfile($this->client->user['uid'])['pdesc']));
+                    ?>
                     </textarea>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="form-group">
-                    <label for="comment" style="font-size:24px">Address</label>
-                    <div id="floating-panel">
-                        <input id="address" type="textbox" placeholder="Enter your address">
-                    </div>
-                </div>
-            </div>
-            <div id="map" class="col-lg-6 col-lg-offset-3"></div>
-        </div>
-
         <!-- /#row -->
     </div>
     <!-- /#page-content-wrapper -->
@@ -510,24 +505,42 @@
 <script src="scripts/dialog.js" type="text/javascript"></script>
 <script src="scripts/hamburger-cross.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $("input[type='image']").click(function() {
-        $("input[id='my_file']").click();
-    });
-    document.getElementById('address').value="<?php echo $this->client->address;?>";
-
-    var myFormData = new FormData();
-    var pictureInput = document.getElementById('my_file');
-    myFormData.append('my_file', pictureInput.files[0]);
-
-    $.ajax({
-        url: '<?php echo $this->client->getLink('profile','uploadPic');?>',
-        type: 'POST',
-        processData: false, // important
-        contentType: false, // important
-        dataType : 'json',
-        data: myFormData
-    });
-
+    function reqfre(){
+        $.ajax({
+            url: 'https://127.0.0.1/hoods/index.php?c=profile&a=friends&friendid=<?php echo $this->client->user['uid']; ?>',
+            success: function (data) {
+                if(data){
+                    console.log(data);
+                    document.getElementById('friend').className="btn btn-warning btn-lg";
+                }
+            },
+            data: {
+                format: 'json'
+            },
+            error: function (data) {
+                console.log(JSON.stringify(data));
+            },
+            type: 'GET'
+        });
+    }
+    function neigh(){
+        $.ajax({
+            url: 'https://127.0.0.1/hoods/index.php?c=profile&a=friends&neighbourid=<?php echo $this->client->user['uid']; ?>',
+            success: function (data) {
+                if(data){
+                    console.log(data);
+                    document.getElementById('neighbour').className="btn btn-warning btn-lg";
+                }
+            },
+            data: {
+                format: 'json'
+            },
+            error: function (data) {
+                console.log(JSON.stringify(data));
+            },
+            type: 'GET'
+        });
+    }
 </script>
 </body>
 

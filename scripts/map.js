@@ -1,5 +1,7 @@
 var map;
 var bermudaTriangle;
+var clickableMap = true;
+var myLatLng;
 //var flag = true;
 function setbounds(arg) {
     triangleCoords = arg;
@@ -29,8 +31,8 @@ function initMap() {
     autocomplete = new google.maps.places.Autocomplete(
         (document.getElementById('address')),
         options);
-
-    var myLatLng = {lat: 40.73772, lng: -73.9844164};
+    if(!myLatLng)
+        myLatLng = {lat: 40.73772, lng: -73.9844164};
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLatLng,
         zoom: 13,
@@ -92,4 +94,7 @@ function initMap() {
             }
         });
     }
+    if(!clickableMap)
+        google.maps.event.clearListeners(map, 'click');
+
 }

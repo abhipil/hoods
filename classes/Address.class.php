@@ -13,11 +13,23 @@ abstract class Address extends Profile
     protected $city;
     protected $state;
     protected $zip;
-    protected $lat;
-    protected $lng;
+    public $lat;
+    public $lng;
+    public $address;
 
-    function __construct()
-    {
+    function __construct(){
+    }
+
+    public function loadAddress(){
+        $rows = $this->getAddress()[0];
+        $this->aptnum = $rows['aptnum'];
+        $this->buldnum = $rows['bldgnum'];
+        $this->street = $rows['street'];
+        $this->city = $rows['city'];
+        $this->state = $rows['state'];
+        $this->zip = $rows['zip'];
+        $this->address=$this->buldnum." ".$this->street.", ".$this->city.", ".$this->state." ".$this->zip;
+        $this->checkLoc($rows['lat'], $rows['lng']);
     }
 
     public function setAddressLoc($address, $lat, $lng)
@@ -74,6 +86,16 @@ abstract class Address extends Profile
         } else
             return false;
         return true;
+    }
+
+    public function getAddress($uid=null){
+        $uid = isset($uid) ? $uid : $this->userid;
+        $stmt = "select lat,lng,aptnum,bldgnum,street,city,state,zip from address where uid=$uid";
+        $rows = DB::select($stmt,array());
+        if($this->exists($rows))
+            return $rows;
+        else
+            return null;
     }
 
     public function addnewAddress()

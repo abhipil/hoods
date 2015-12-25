@@ -13,7 +13,8 @@ abstract class Model
         'user_not_exist' => "The username does not exist.<br>Please register or try again.",
         'username_exist' => "That username is already in use.<br>Please choose another one.",
         'email_exist' => "That email address is already in use.<br>Please choose another one.",
-        'pass_not_match' => "The username and password do not match.<br>Please try again."
+        'pass_not_match' => "The username and password do not match.<br>Please try again.",
+        'error' => "Something unexpected happened, give me a moment"
     );
     protected $page_error;
     protected $style;
@@ -91,9 +92,8 @@ abstract class Model
         return $this->page_error;
     }
 
-    public function setPageError($errorcode)
-    {
-        if (array_key_exists($errorcode, $this->page_error_list))
+    public function setPageError($errorcode='error'){
+        if (array_key_exists($errorcode , $this->page_error_list))
             $this->page_error = $this->page_error_list[$errorcode];
     }
 

@@ -16,8 +16,8 @@ class ProfileView extends View
         $this->client = $client;
     }
 
-    public function profile()
+    public function profile($params)
     {
-        require_once("templates/profile/profile.php");
+        require_once("templates/profile/".$this->client->profile.".php");
     }
 }

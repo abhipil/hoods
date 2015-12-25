@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: abhishek
  * Date: 12/24/15
- * Time: 1:37 AM
+ * Time: 2:08 PM
  */
 ?>
 <!DOCTYPE html>
@@ -30,27 +30,27 @@
         /*-------------------------------*/
 
         .sidebar-nav {
-            position: absolute;
-            top: 0;
-            width: 220px;
+    position: absolute;
+    top: 0;
+    width: 220px;
             margin: 0;
             padding: 0;
             list-style: none;
         }
 
         .sidebar-nav li {
-            position: relative;
-            line-height: 20px;
+    position: relative;
+    line-height: 20px;
             display: inline-block;
             width: 100%;
         }
 
         .sidebar-nav li:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
             height: 100%;
             width: 3px;
             background-color: #1c1c1c;
@@ -62,46 +62,46 @@
         }
 
         .sidebar-nav li:first-child a {
-            color: #fff;
-            background-color: #1a1a1a;
+    color: #fff;
+    background-color: #1a1a1a;
         }
 
         .sidebar-nav li:nth-child(2):before {
-            background-color: #ec1b5a;
+    background-color: #ec1b5a;
         }
 
         .sidebar-nav li:nth-child(3):before {
-            background-color: #79aefe;
+    background-color: #79aefe;
         }
 
         .sidebar-nav li:nth-child(4):before {
-            background-color: #314190;
+    background-color: #314190;
         }
 
         .sidebar-nav li:nth-child(5):before {
-            background-color: #279636;
+    background-color: #279636;
         }
 
         .sidebar-nav li:nth-child(6):before {
-            background-color: #7d5d81;
+    background-color: #7d5d81;
         }
 
         .sidebar-nav li:nth-child(7):before {
-            background-color: #ead24c;
+    background-color: #ead24c;
         }
 
         .sidebar-nav li:nth-child(8):before {
-            background-color: #2d2366;
+    background-color: #2d2366;
         }
 
         .sidebar-nav li:nth-child(9):before {
-            background-color: #35acdf;
+    background-color: #35acdf;
         }
 
         .sidebar-nav li:hover:before,
         .sidebar-nav li.open:hover:before {
-            width: 100%;
-            -webkit-transition: width .2s ease-in;
+    width: 100%;
+    -webkit-transition: width .2s ease-in;
             -moz-transition: width .2s ease-in;
             -ms-transition: width .2s ease-in;
             transition: width .2s ease-in;
@@ -109,9 +109,9 @@
         }
 
         .sidebar-nav li a {
-            display: block;
-            color: #ddd;
-            text-decoration: none;
+    display: block;
+    color: #ddd;
+    text-decoration: none;
             padding: 10px 15px 10px 30px;
         }
 
@@ -121,23 +121,23 @@
         .sidebar-nav li.open a:hover,
         .sidebar-nav li.open a:active,
         .sidebar-nav li.open a:focus {
-            color: #fff;
-            text-decoration: none;
+    color: #fff;
+    text-decoration: none;
             background-color: transparent;
         }
 
         .sidebar-nav > .sidebar-brand {
-            height: 65px;
+    height: 65px;
             font-size: 20px;
             line-height: 44px;
         }
 
         .sidebar-nav .dropdown-menu {
-            position: relative;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            border-radius: 0;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
             border: none;
             background-color: #222;
             box-shadow: none;
@@ -148,8 +148,8 @@
         /*-------------------------------*/
 
         .hamburger {
-            position: fixed;
-            top: 60px;
+    position: fixed;
+    top: 60px;
             z-index: 999;
             display: block;
             width: 32px;
@@ -162,13 +162,13 @@
         .hamburger:hover,
         .hamburger:focus,
         .hamburger:active {
-            outline: none;
-        }
+    outline: none;
+}
 
         .hamburger.is-closed:before {
-            content: '';
-            display: block;
-            width: 100px;
+    content: '';
+    display: block;
+    width: 100px;
             font-size: 14px;
             color: #fff;
             line-height: 32px;
@@ -179,9 +179,9 @@
         }
 
         .hamburger.is-closed:hover:before {
-            opacity: 1;
-            display: block;
-            -webkit-transform: translate3d(-100px, 0, 0);
+    opacity: 1;
+    display: block;
+    -webkit-transform: translate3d(-100px, 0, 0);
             -webkit-transition: all .35s ease-in-out;
         }
 
@@ -191,73 +191,73 @@
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-middle,
         .hamburger.is-open .hamb-bottom {
-            position: absolute;
-            left: 0;
-            height: 4px;
+    position: absolute;
+    left: 0;
+    height: 4px;
             width: 100%;
         }
 
         .hamburger.is-closed .hamb-top,
         .hamburger.is-closed .hamb-middle,
         .hamburger.is-closed .hamb-bottom {
-            background-color: #1a1a1a;
+    background-color: #1a1a1a;
         }
 
         .hamburger.is-closed .hamb-top {
-            top: 5px;
+    top: 5px;
             -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed .hamb-middle {
-            top: 50%;
-            margin-top: -2px;
+    top: 50%;
+    margin-top: -2px;
         }
 
         .hamburger.is-closed .hamb-bottom {
-            bottom: 5px;
+    bottom: 5px;
             -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed:hover .hamb-top {
-            top: 0;
-            -webkit-transition: all .35s ease-in-out;
+    top: 0;
+    -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed:hover .hamb-bottom {
-            bottom: 0;
-            -webkit-transition: all .35s ease-in-out;
+    bottom: 0;
+    -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-middle,
         .hamburger.is-open .hamb-bottom {
-            background-color: #1a1a1a;
+    background-color: #1a1a1a;
         }
 
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-bottom {
-            top: 50%;
-            margin-top: -2px;
+    top: 50%;
+    margin-top: -2px;
         }
 
         .hamburger.is-open .hamb-top {
-            -webkit-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
             -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
         }
 
         .hamburger.is-open .hamb-middle {
-            display: none;
-        }
+    display: none;
+}
 
         .hamburger.is-open .hamb-bottom {
-            -webkit-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
             -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
         }
 
         .hamburger.is-open:before {
-            content: '';
-            display: block;
-            width: 100px;
+    content: '';
+    display: block;
+    width: 100px;
             font-size: 14px;
             color: #fff;
             line-height: 32px;
@@ -268,67 +268,25 @@
         }
 
         .hamburger.is-open:hover:before {
-            opacity: 1;
-            display: block;
-            -webkit-transform: translate3d(-100px, 0, 0);
+    opacity: 1;
+    display: block;
+    -webkit-transform: translate3d(-100px, 0, 0);
             -webkit-transition: all .35s ease-in-out;
         }
 
-        #floating-panel input[type="textbox"] {
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            -ms-border-radius: 3px;
-            -o-border-radius: 3px;
-            border-radius: 3px;
-            -webkit-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -moz-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -ms-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-            background: #eae7e7 url(../icons/map.png) no-repeat;
-            border: 1px solid #c8c8c8;
-            color: #777;
-            font: 13px Helvetica, Arial, sans-serif;
-            float: left;
-            margin: auto 10px 10px 0;
-            padding: 15px 10px 15px 40px;
-            width: 60%;
-        }
-
-        #floating-panel input[type="textbox"]:focus {
-            -webkit-box-shadow: 0 0 2px #ed1c24 inset;
-            -moz-box-shadow: 0 0 2px #ed1c24 inset;
-            -ms-box-shadow: 0 0 2px #ed1c24 inset;
-            -o-box-shadow: 0 0 2px #ed1c24 inset;
-            box-shadow: 0 0 2px #ed1c24 inset;
-            background-color: #fff;
-            border: 1px solid #ed1c24;
-            outline: none;
-        }
-
         .sidebar-right {
-            height: 100px;
+    height: 100px;
             right: 0;
             float: right;
         }
 
         /*-- List groups --*/
         .list-group {
-            width: 200px;
+    width: 200px;
         }
 
         .bs-example {
-            margin: 20px;
-        }
-        #map {
-            position: relative;
-            height: 500px;
-            width: 50%;
+    margin: 20px;
         }
 
     </style>
@@ -340,22 +298,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <script type="text/javascript" src="scripts/map.js"></script>
-    <script type="text/javascript" src="scripts/getblocks.js"></script>
-    <?php
-    if ($this->client->showMap()) {
-        echo '<script async defer ';
-        echo "src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBJcflEGoe0V_Le0yzEiYhosX6rwAeZhAY&callback=initMap&libraries=places,geometry' >";
-        echo '</script>';
-    }
-    ?>
-    <script type="text/javascript">
-        myLatLng = {
-            lat: <?php echo $this->client->lat;?>,
-            lng: <?php echo $this->client->lng;?>};
-        clickableMap=false;
-    </script>
 
 </head>
 
@@ -391,15 +333,16 @@
                     <li><a href="
                     <?php
                         echo $this->client->getLink('home', 'post');
-                        ?>
+                    ?>
                     ">Post</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-top-links navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <a data-toggle="dropdown" role="button" class="dropdown-toggle" href="#" aria-haspopup="true"
+                           aria-expanded="false">
                             <?php echo $this->client->username; ?>
                             <b class="caret"></b></a>
-                        <ul role="menu" class="dropdown-menu">
+                        <ul class="dropdown-menu">
                             <li><a href="#">Signout</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Signout</a></li>
@@ -421,7 +364,13 @@
                 </a>
             </li>
             <li>
-                <a href="#">Direct Messages</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'dm',
+                        'tid' => $this->client->userid));
+                else
+                    echo '';
+                ?>">Direct Messages</a>
             </li>
             <li>
                 <a href="
@@ -434,13 +383,28 @@
                 ?>">Block</a>
             </li>
             <li>
-                <a href="#">Friends</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'friends'));
+                else
+                    echo '';
+                ?>">Friends</a>
             </li>
             <li>
-                <a href="#">Neighbours</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Neighbours</a>
             </li>
             <li>
-                <a href="#">Post</a>
+                <a href="<?php
+                if (!$this->client->notaMember)
+                    echo $this->client->getLink('home', 'home', array('t' => 'neighbours'));
+                else
+                    echo '';
+                ?>">Post</a>
             </li>
             <li>
                 <a href="#">Services</a>
@@ -462,45 +426,57 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="text-center">
-                    Welcome, <?php echo $this->client->firstname; ?>
+                   Share your world, with those close to you!
                 </h1>
-                <div class="span12">
-                    <input class="img-responsive center-block" type="image" src="images/anon1.jpg" alt="Anon Pic" style="width:400px;height:400px;">
-                    <input type="file" id="my_file" accept="image/*" style="display: none;" />
-                </div>
             </div>
         </div>
+        <form action="<?php
+                echo $this->client->getLink('home','post');
+            ?>" method="post">
+            <input id="formtitle" type="text" hidden>
+            <input id="formbody" type="text" hidden>
 
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="form-group">
-                    <label for="comment" style="font-size:24px">Description</label>
-                    <textarea class="form-control" rows="5" style="font-size:18px id="comment">
-                        <?php
-                            echo htmlspecialchars(trim($this->client->descrip));
-                        ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label for="comment" style="font-size:24px">Title</label>
+                    <textarea id="title" class="form-control" rows="1" style="font-size:18px id="comment">
+
                     </textarea>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="form-group">
-                    <label for="comment" style="font-size:24px">Address</label>
-                    <div id="floating-panel">
-                        <input id="address" type="textbox" placeholder="Enter your address">
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label for="comment" style="font-size:24px">Body</label>
+                    <textarea id="bosy" class="form-control" rows="5" style="font-size:18px id="comment">
+
+                    </textarea>
                 </div>
             </div>
-            <div id="map" class="col-lg-6 col-lg-offset-3"></div>
-        </div>
-
-        <!-- /#row -->
+            <br><br>
+            <div class="row">
+                <div class="col-lg-2">
+                    <input id="target" type="radio" value="Block">  Block
+                </div>
+                <div class="col-lg-2">
+                    <input id="target" type="radio" value="Block">  Hood
+                </div>
+                <div class="col-lg-2">
+                    <input id="target" type="radio" value="Block">  Friends
+                </div>
+                <div class="col-lg-2">
+                    <input id="target" type="radio" value="Block">  Neighbours
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <input type="submit" value="Post" class="pull-right" onclick="post()">
+                </div>
+            </div>
+        </form>
+        <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#page-content-wrapper -->
-
-</div>
 <!-- /#wrapper -->
+</div>
 
 <!-- jQuery -->
 <script src="scripts/jquery.js"></script>
@@ -510,24 +486,10 @@
 <script src="scripts/dialog.js" type="text/javascript"></script>
 <script src="scripts/hamburger-cross.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $("input[type='image']").click(function() {
-        $("input[id='my_file']").click();
-    });
-    document.getElementById('address').value="<?php echo $this->client->address;?>";
-
-    var myFormData = new FormData();
-    var pictureInput = document.getElementById('my_file');
-    myFormData.append('my_file', pictureInput.files[0]);
-
-    $.ajax({
-        url: '<?php echo $this->client->getLink('profile','uploadPic');?>',
-        type: 'POST',
-        processData: false, // important
-        contentType: false, // important
-        dataType : 'json',
-        data: myFormData
-    });
-
+    function post(){
+        var title = document.getElementById('title').value;
+        console.log(title);
+    }
 </script>
 </body>
 

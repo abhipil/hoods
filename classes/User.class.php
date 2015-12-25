@@ -124,6 +124,19 @@ abstract class User extends Block
         $stmt = "insert into hoods.user (uname,password,emailid) values(?,?,?)";
         return DB::insert($stmt, $params, array());
     }
+
+    public function reqfriendship($friendid){
+        $stmt ="insert into friend (uid,friend) values ($this->userid,$friendid)";
+        return DB::insert($stmt, array(), array());
+    }
+    public function accfriendship($friendid){
+        $stmt ="insert into friend (uid,friend,status) values ($this->userid,$friendid,'accepted');";
+        return DB::insert($stmt, array(), array());
+    }
+    public function neighbour($neighbourid, $status=1){
+        $stmt ="insert into neighbour (uid,neighbour,status) values ($this->userid,$neighbourid,$status)";
+        return DB::insert($stmt, array(), array());
+    }
 }
 
 ?>
