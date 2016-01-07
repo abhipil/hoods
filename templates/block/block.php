@@ -344,9 +344,11 @@
                         ?>
                     ">Post</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form action="<?php
+                        echo $this->client->getLink('home','search');
+                    ?>" method="post" class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>

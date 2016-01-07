@@ -55,7 +55,7 @@ function call($controller, $action)
 // we're adding an entry for the new controller and its actions
 $controllers = array('login' => ['login', 'trylogin', 'updatevisittim'],
     'register' => ['register', 'tryreg', 'address', 'validaddr', 'jsonblocks', 'block'],
-    'home' => ['post', 'profile', 'home'],
+    'home' => ['search','thread','post', 'profile', 'home'],
     'profile' => ['page','uploadPic','user','friends'],
     'post' => ['post'],
     'block' => ['block','approve']

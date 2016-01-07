@@ -321,13 +321,24 @@
                     <?php
                         echo $this->client->getLink('profile', 'page');
                     ?>">Profile</a></li>
-                    <li><a href="#">Block</a></li>
+                    <li><a href="
+                    <?php
+                        echo $this->client->getLink('block', 'block', array('bid' => $this->client->blockid));
+                    ?>">Block</a></li>
                     <li><a href="
                     <?php
                         echo $this->client->getLink('home', 'post');
                     ?>
                     ">Post</a></li>
                 </ul>
+                <form action="<?php
+                echo $this->client->getLink('home','search');
+                ?>" method="post" class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a data-toggle="dropdown" role="button" class="dropdown-toggle" href="#" aria-haspopup="true"
@@ -487,12 +498,16 @@
                                 else
                                     $targetid=null;
                             }
-                        $rows = $this->client->getThreads($target, $targetid);
+                        if($this->client->search) {
+                            $rows = $this->client->searchThreads($_POST['search']);
+                        }
+                        else
+                            $rows = $this->client->getThreads($target, $targetid);
                         foreach ($rows as $thread) {
                             echo "<tr >"
                                 . "<td>"
                                 . "<a href="
-                                . $this->client->getLink('home', 'post', array('tr' => $thread['tid']))
+                                . $this->client->getLink('home', 'thread', array('tr' => $thread['tid']))
                                 . ">"
                                 . $thread['title']
                                 . "</a>"

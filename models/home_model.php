@@ -6,6 +6,7 @@ class HomeModel extends Thread
     private $homeTemplates;
     private $homeScripts = array('map' => 'map');
     public $home;
+    public $search;
 
     function __construct()
     {
@@ -17,6 +18,7 @@ class HomeModel extends Thread
         $this->setHomeTemplates();
         $this->scriptspresent = FALSE;
         $this->setUser();
+        $this->search=false;
     }
 
     public function setHomeTemplates($templates = array('home'))

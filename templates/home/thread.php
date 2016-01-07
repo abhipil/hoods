@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: abhishek
- * Date: 12/24/15
- * Time: 2:08 PM
+ * Date: 12/25/15
+ * Time: 5:03 AM
  */
 ?>
 <!DOCTYPE html>
@@ -30,27 +30,27 @@
         /*-------------------------------*/
 
         .sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 220px;
+            position: absolute;
+            top: 0;
+            width: 220px;
             margin: 0;
             padding: 0;
             list-style: none;
         }
 
         .sidebar-nav li {
-    position: relative;
-    line-height: 20px;
+            position: relative;
+            line-height: 20px;
             display: inline-block;
             width: 100%;
         }
 
         .sidebar-nav li:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
             height: 100%;
             width: 3px;
             background-color: #1c1c1c;
@@ -62,46 +62,46 @@
         }
 
         .sidebar-nav li:first-child a {
-    color: #fff;
-    background-color: #1a1a1a;
+            color: #fff;
+            background-color: #1a1a1a;
         }
 
         .sidebar-nav li:nth-child(2):before {
-    background-color: #ec1b5a;
+            background-color: #ec1b5a;
         }
 
         .sidebar-nav li:nth-child(3):before {
-    background-color: #79aefe;
+            background-color: #79aefe;
         }
 
         .sidebar-nav li:nth-child(4):before {
-    background-color: #314190;
+            background-color: #314190;
         }
 
         .sidebar-nav li:nth-child(5):before {
-    background-color: #279636;
+            background-color: #279636;
         }
 
         .sidebar-nav li:nth-child(6):before {
-    background-color: #7d5d81;
+            background-color: #7d5d81;
         }
 
         .sidebar-nav li:nth-child(7):before {
-    background-color: #ead24c;
+            background-color: #ead24c;
         }
 
         .sidebar-nav li:nth-child(8):before {
-    background-color: #2d2366;
+            background-color: #2d2366;
         }
 
         .sidebar-nav li:nth-child(9):before {
-    background-color: #35acdf;
+            background-color: #35acdf;
         }
 
         .sidebar-nav li:hover:before,
         .sidebar-nav li.open:hover:before {
-    width: 100%;
-    -webkit-transition: width .2s ease-in;
+            width: 100%;
+            -webkit-transition: width .2s ease-in;
             -moz-transition: width .2s ease-in;
             -ms-transition: width .2s ease-in;
             transition: width .2s ease-in;
@@ -109,9 +109,9 @@
         }
 
         .sidebar-nav li a {
-    display: block;
-    color: #ddd;
-    text-decoration: none;
+            display: block;
+            color: #ddd;
+            text-decoration: none;
             padding: 10px 15px 10px 30px;
         }
 
@@ -121,23 +121,23 @@
         .sidebar-nav li.open a:hover,
         .sidebar-nav li.open a:active,
         .sidebar-nav li.open a:focus {
-    color: #fff;
-    text-decoration: none;
+            color: #fff;
+            text-decoration: none;
             background-color: transparent;
         }
 
         .sidebar-nav > .sidebar-brand {
-    height: 65px;
+            height: 65px;
             font-size: 20px;
             line-height: 44px;
         }
 
         .sidebar-nav .dropdown-menu {
-    position: relative;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
+            position: relative;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border-radius: 0;
             border: none;
             background-color: #222;
             box-shadow: none;
@@ -148,8 +148,8 @@
         /*-------------------------------*/
 
         .hamburger {
-    position: fixed;
-    top: 60px;
+            position: fixed;
+            top: 60px;
             z-index: 999;
             display: block;
             width: 32px;
@@ -162,13 +162,13 @@
         .hamburger:hover,
         .hamburger:focus,
         .hamburger:active {
-    outline: none;
-}
+            outline: none;
+        }
 
         .hamburger.is-closed:before {
-    content: '';
-    display: block;
-    width: 100px;
+            content: '';
+            display: block;
+            width: 100px;
             font-size: 14px;
             color: #fff;
             line-height: 32px;
@@ -179,9 +179,9 @@
         }
 
         .hamburger.is-closed:hover:before {
-    opacity: 1;
-    display: block;
-    -webkit-transform: translate3d(-100px, 0, 0);
+            opacity: 1;
+            display: block;
+            -webkit-transform: translate3d(-100px, 0, 0);
             -webkit-transition: all .35s ease-in-out;
         }
 
@@ -191,73 +191,73 @@
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-middle,
         .hamburger.is-open .hamb-bottom {
-    position: absolute;
-    left: 0;
-    height: 4px;
+            position: absolute;
+            left: 0;
+            height: 4px;
             width: 100%;
         }
 
         .hamburger.is-closed .hamb-top,
         .hamburger.is-closed .hamb-middle,
         .hamburger.is-closed .hamb-bottom {
-    background-color: #1a1a1a;
+            background-color: #1a1a1a;
         }
 
         .hamburger.is-closed .hamb-top {
-    top: 5px;
+            top: 5px;
             -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed .hamb-middle {
-    top: 50%;
-    margin-top: -2px;
+            top: 50%;
+            margin-top: -2px;
         }
 
         .hamburger.is-closed .hamb-bottom {
-    bottom: 5px;
+            bottom: 5px;
             -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed:hover .hamb-top {
-    top: 0;
-    -webkit-transition: all .35s ease-in-out;
+            top: 0;
+            -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-closed:hover .hamb-bottom {
-    bottom: 0;
-    -webkit-transition: all .35s ease-in-out;
+            bottom: 0;
+            -webkit-transition: all .35s ease-in-out;
         }
 
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-middle,
         .hamburger.is-open .hamb-bottom {
-    background-color: #1a1a1a;
+            background-color: #1a1a1a;
         }
 
         .hamburger.is-open .hamb-top,
         .hamburger.is-open .hamb-bottom {
-    top: 50%;
-    margin-top: -2px;
+            top: 50%;
+            margin-top: -2px;
         }
 
         .hamburger.is-open .hamb-top {
-    -webkit-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
             -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
         }
 
         .hamburger.is-open .hamb-middle {
-    display: none;
-}
+            display: none;
+        }
 
         .hamburger.is-open .hamb-bottom {
-    -webkit-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
             -webkit-transition: -webkit-transform .2s cubic-bezier(.73, 1, .28, .08);
         }
 
         .hamburger.is-open:before {
-    content: '';
-    display: block;
-    width: 100px;
+            content: '';
+            display: block;
+            width: 100px;
             font-size: 14px;
             color: #fff;
             line-height: 32px;
@@ -268,25 +268,25 @@
         }
 
         .hamburger.is-open:hover:before {
-    opacity: 1;
-    display: block;
-    -webkit-transform: translate3d(-100px, 0, 0);
+            opacity: 1;
+            display: block;
+            -webkit-transform: translate3d(-100px, 0, 0);
             -webkit-transition: all .35s ease-in-out;
         }
 
         .sidebar-right {
-    height: 100px;
+            height: 100px;
             right: 0;
             float: right;
         }
 
         /*-- List groups --*/
         .list-group {
-    width: 200px;
+            width: 200px;
         }
 
         .bs-example {
-    margin: 20px;
+            margin: 20px;
         }
 
     </style>
@@ -433,66 +433,71 @@
     </button>
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
+        <?php
+            $thread = $this->client->getThread($_GET['tr']);
+            $messages = $this->client->getThreadMessages($_GET['tr']);
+        ?>
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="text-center">
-                   Share your world, with those close to you!
+                    <?php echo $thread['title']; ?>
                 </h1>
             </div>
         </div>
-        <form action="<?php
-                echo $this->client->getLink('home','post');
-            ?>" method="post" class="form-horizontal">
-            <fieldset>
-
-                <!-- Form Name -->
-                <legend>Create a thread</legend>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="title">Title</label>
-                    <div class="col-md-8">
-                        <input id="textinput" name="title" type="title" placeholder="Thread title" class="form-control input-md" required="">
-                    </div>
+        <div class='row'>
+            <div class='col-lg-12'>
+                <div class="table-responsive" style="font-size:24px">
+                    <table class="table .table-condensed table-hover ">
+                        <tbody>
+                            <?php
+                                foreach($messages as $message)
+                                echo "<tr>"
+                                    ."<td>"
+                                    ."<p>"
+                                    .$message['body']
+                                    ."</p>"
+                                    ."</td>"
+                                    ."<td>"
+                                    ."<a href='"
+                                    .$this->client->getLink('profile', 'user', array('u' => $this->client->getUsername($message['uid'])))
+                                    ."'>"
+                                    .$this->client->getUsername($message['uid'])
+                                    ."</a>"
+                                    ."</td>"
+                                    ."</tr>";
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-
+            </div>
+        </div>
+        <div class="row">
+            <form action="<?php
+                    echo $this->client->getLink('home','thread',array('tr' => $_GET['tr']));
+                ?>" method="post" class="form-horizontal col-lg-12">
                 <!-- Textarea -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="body">Message body</label>
-                    <div class="col-md-8">
-                        <textarea class="form-control" id="body" name="body" placeholder="What's on your mind?" rows="5"></textarea>
+                    <div class="row">
+                    <label class="col-lg-6 control-label" for="textarea">Post reply</label>
                     </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="target">Target</label>
-                    <div class="col-md-2">
-                        <select id="selectbasic" name="target" class="form-control">
-                            <option value="block">Block wide</option>
-                            <option value="hood">Hood wide</option>
-                            <option value="friends">Friends</option>
-                            <option value="neighbours">Neighbours</option>
-                            <option value="dm">Direct Message</option>
-                        </select>
+                    <div class="row">
+                    <div class="col-lg-12">
+                        <textarea class="form-control" rows="5" style="font-size:18px" id="reply" name="reply" placeholder="Write you reply here"></textarea>
+                    </div>
                     </div>
                 </div>
 
                 <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="post"></label>
-                    <div class="col-md-4">
-                        <button id="post" name="post" class="btn btn-primary">Post</button>
+                <div class="form-group pull-right">
+                    <div class="col-lg-6">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Post</button>
                     </div>
                 </div>
-
-            </fieldset>
-        </form>
-
+            </form>
+        </div>
         <!-- /#page-content-wrapper -->
     </div>
-<!-- /#wrapper -->
+    <!-- /#wrapper -->
 </div>
 
 <!-- jQuery -->
@@ -502,6 +507,12 @@
 <script src="scripts/bootstrap.min.js"></script>
 <script src="scripts/dialog.js" type="text/javascript"></script>
 <script src="scripts/hamburger-cross.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function post(){
+        var title = document.getElementById('title').value;
+        console.log(title);
+    }
+</script>
 </body>
 
 </html>

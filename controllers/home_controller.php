@@ -27,14 +27,33 @@ class HomeController extends Controller
         }
         $this->client->home='post';
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            $this->client->createthread($_POST);
+            $targetid=null;
+            switch($_POST['target']){
+                case 'hood';
+                    $targetid=$this->client->getHoodID();
+                    break;
+                case 'block';
+                    $targetid=$this->client->blockid;
+                    break;
+            }
+            if($this->client->createThread($_POST['title'],$_POST['body'],$_POST['target'],$targetid))
+            $this->redirect($this->client->getLink('home','thread',array('tr'=>DB::select("select tid as id from message where mid=last_insert_id()")[0]['id'])));
         }
 
     }
+    public function thread($params){
+        $this->client->home='thread';
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            if($this->client->replytothread($_GET['tr'],$_POST['reply'])){
+                $this->redirect($this->client->getLink('home','thread',array('tr'=>$_GET['tr'])));
+            }
+        }
 
-    public function profile()
-    {
-
+    }
+    public function search(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $this->client->search=true;
+        }
     }
 }
 

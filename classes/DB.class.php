@@ -76,7 +76,7 @@ class DB
             }
             $prepstmt->execute();
         } catch (PDOException $ex) {
-            //print_r($ex);
+            print_r($ex);
             return false;
         }
         return true;

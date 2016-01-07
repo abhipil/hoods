@@ -475,7 +475,7 @@
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="form-group">
                     <label for="comment" style="font-size:24px">Description</label>
-                    <textarea class="form-control" rows="5" style="font-size:18px id="comment">
+                    <textarea class="form-control" rows="5" style="font-size:18px" id="comment">
                         <?php
                             echo htmlspecialchars(trim($this->client->descrip));
                         ?>
